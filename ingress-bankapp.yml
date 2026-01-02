@@ -2,18 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: online-shop-ingress
-  namespace: hemantsharma
+  namespace: hemant
   annotations:
     ingress.citrix.com/insecure-termination: "redirect"
-    ingress.citrix.com/ipam-range: "descolfrnsint"
-    ingress.citrix.com/preconfigured-certkey : '{"certs": [ {"name": "int_wildcard_hella_com"} ] }'
+    ingress.citrix.com/ipam-range: "nginx"
+    ingress.citrix.com/preconfigured-certkey : '{"certs": [ {"name": "int_wildcard_abc_com"} ] }'
     ingress.citrix.com/servicegroup: '{"onlineshop-ui":{"usip": "No"}}'
 spec:
-  ingressClassName: descolfrnsint
+  ingressClassName: nginx
   tls:
   - secretName:
   rules:
-  - host: onlineshop-descolfr-rk2-abc.com
+  - host: onlineshop-descolfr-abc.com
     http:
       paths:
       - path: /
