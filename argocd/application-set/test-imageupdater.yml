@@ -1,0 +1,25 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: chai-test-updater
+  namespace: argocd
+spec:
+  namespace: argocd
+
+  writeBackConfig:
+    method: git
+    gitConfig:
+      branch: main
+      writeBackTarget: kustomization
+
+  applicationRefs:
+    - namePattern: "chai-app-test"
+
+      images:
+        - alias: chai-app
+          imageName: mrhemantksharma/chai-app
+
+          commonUpdateSettings:
+            updateStrategy: latest
+            allowTags: "regexp:^test-.*$"
+

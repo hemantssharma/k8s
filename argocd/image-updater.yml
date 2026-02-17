@@ -1,0 +1,20 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: webapp-updater
+  namespace: argocd
+spec:
+  namespace: argocd
+
+  writeBackConfig:
+    method: git
+    gitConfig:
+      branch: main
+      writeBackTarget: "kustomization"
+
+  applicationRefs:
+    - namePattern: "web-app"
+      images:
+        - alias: mywebapp
+          imageName: mrhemantksharma/mywebapp
+
